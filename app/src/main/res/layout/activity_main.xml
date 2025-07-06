@@ -89,10 +89,67 @@
         android:layout_height="wrap_content"
         android:text="@string/bt_save" />
 
-    <ListView
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/parentLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#ffffff"
-        android:entries="@array/lv_cocktaillist" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- テーブルコンテナ（表示/非表示を制御する対象） -->
+        <LinearLayout
+            android:id="@+id/tableContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 固定ヘッダー -->
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:background="#f0f0f0">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:text="項目1"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:text="項目2"
+                        android:textStyle="bold"/>
+                </TableRow>
+            </TableLayout>
+
+            <!-- スクロール可能なコンテンツ -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <TableLayout
+                    android:id="@+id/dataTable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*">
+                    <!-- データ行はプログラムで追加 -->
+                </TableLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <!-- 表示/非表示を制御するボタン -->
+        <Button
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="テーブル表示切替"/>
+    </LinearLayout>
 </LinearLayout>
